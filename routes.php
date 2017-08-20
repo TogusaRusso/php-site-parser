@@ -6,6 +6,7 @@ if (isset($_POST['url']) && !empty($_POST['url'])) {
     $controller = new PostController($parser);
     $controller->post();
 } else {
+    // if POST is empty there is no reason for model yet 
     $controller = new PostController(null);
     $controller->index();
 }

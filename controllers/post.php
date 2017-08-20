@@ -7,7 +7,8 @@ class PostController
     {
         $this->model = $model;
     }
-
+    
+    // default action when there's no user's input
     public function index() 
     {
         $url = '';
@@ -15,7 +16,8 @@ class PostController
         $elements = null;
         require_once('views/main.php');
     }
-
+    
+    // default action when there's no user's input
     public function post() 
     {
         $url = $_POST['url'];

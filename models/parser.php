@@ -1,9 +1,13 @@
 <?php
 class Parser 
 {
+    // url of parsed page
     public $url;
+    // error message, if no errrors, then null
     public $error;
+    // found elements
     public $elements;
+    // tag by which search elements
     private $tag;
     
     public function __construct($tag)
@@ -11,6 +15,8 @@ class Parser
         $this->tag = $tag;
     }
     
+    // loads webpage by $url, finds all $tag elements
+    // stores results in public properties
     public function parse($url)
     {
         $this->url = $url;
@@ -32,12 +38,11 @@ class Parser
             $this->error = 'Заголовков не найдено';
             return;
         } 
-
-        foreach($elements as $element)
+        foreach ($elements as $element)
             $this->elements[] = $element->textContent;
     }
 
-    // Check is URL valid using headers
+    // Checks is URL valid using headers
     private function urlValid($url)
     {
         $headers = get_headers($url);
