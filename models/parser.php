@@ -27,15 +27,16 @@ class Parser
             return;
         }
 
-        // Create DOM from URL
-        $dom = new DOMDocument(); 
         // Load the url's contents into the DOM
-        @$dom->loadHTMLFile($url);
+        $source = file_get_contents($url);
+        $source = mb_convert_encoding($source, 'HTML-ENTITIES', 'utf-8');
+        $dom = new DOMDocument(); 
+        @$dom->loadHTML($source);
 
         // Find all elements by tag
         $elements = $dom->getElementsByTagName($this->tag);
         if (!$elements->length) {
-            $this->error = 'Заголовков не найдено';
+            $this->error = 'Элементов не найдено';
             return;
         } 
         foreach ($elements as $element)
